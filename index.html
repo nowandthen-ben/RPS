@@ -7,11 +7,42 @@
 </head>
 <body>
     <script>
-        function computerChoice() {
-            let selection = Math.floor(Math.random() * 3)
-            console.log(selection)
+        let compChoice;
+        let humanChoice;
+        function computerSelect() {
+            let selection = Math.floor(Math.random() * 3);
+            console.log(selection);
+            compChoice = selection;
         }
-        
+        function humanSelect(string) {
+            let selection = string.toLowerCase();
+            switch (selection) {
+                case "rock":
+                    humanChoice = 0;
+                    break;
+                case "paper":
+                    humanChoice = 1;
+                    break;
+                case "scissors":
+                    humanChoice = 2;
+                    break;
+            }
+        }
+        function translate(x) {
+            let num = x;
+            let translation;
+            switch (num) {
+                case 0:
+                    return "rock"
+                    break;
+                case 1:
+                    return "paper"
+                    break;
+                case 2:
+                    return "scissors"
+                    break;
+            }
+        }
     </script>
 </body>
 </html>
