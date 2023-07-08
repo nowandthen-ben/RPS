@@ -3,29 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>THE GREAT GAME OF WITS</title>
 </head>
 <body>
     <script>
         let compChoice;
         let humanChoice;
         function computerSelect() {
-            let selection = Math.floor(Math.random() * 3);
-            console.log(`compChoice: ${selection}`);
-            compChoice = selection;
+            compChoice = Math.floor(Math.random() * 3);
         }
-        function humanSelect(string) {
-            let selection = string.toLowerCase();
-            switch (selection) {
-                case "rock":
-                    humanChoice = 0;
+        function humanSelect() {
+            while (true) {
+                tool = prompt("Arm yourself!").toLowerCase();
+                switch (tool) {
+                    case "rock":
+                        humanChoice = 0;
+                        break;
+                    case "paper":
+                        humanChoice = 1;
+                        break;
+                    case "scissors":
+                        humanChoice = 2;
+                        break;
+                    default:
+                        humanChoice = -1;
+                        break;
+                }
+                if (humanChoice < 0) {
+                    alert("INVALID INPUT, TRY AGAIN");
+                }
+                else {
                     break;
-                case "paper":
-                    humanChoice = 1;
-                    break;
-                case "scissors":
-                    humanChoice = 2;
-                    break;
+                }
             }
         }
         function translate(x) {
@@ -33,32 +42,40 @@
             let translation;
             switch (num) {
                 case 0:
-                    return "rock"
+                    return "rock";
                     break;
                 case 1:
-                    return "paper"
+                    return "paper";
                     break;
                 case 2:
-                    return "scissors"
+                    return "scissors";
                     break;
             }
         }
-        function rps(input) {
-            humanSelect(input);
-            console.log(`humanChoice: ${humanChoice}, ${translate(humanChoice)}`)
-            computerSelect();
-            console.log(`computer chose: ${translate(compChoice)}`)
-            switch ((2 * humanChoice + compChoice) % 3) {
-                case 0:
-                    return "TIE GAME";
-                    break;
-                case 1:
-                    return "YOU LOSE";
-                    break;
-                case 2:
-                    return "YOU WIN";
-                    break;
+        function rps(x = 5) {
+            let hScore = 0;
+            let cScore = 0;
+            while (hScore + cScore < x) {
+                humanSelect();
+                computerSelect();
+                console.log(`Computer chose: ${translate(compChoice)}`);
+                switch ((2 * humanChoice + compChoice) % 3) {
+                    case 0:
+                        console.log("TIE GAME");
+                        break;
+                    case 1:
+                        console.log("YOU LOSE");
+                        cScore++;
+                        console.log(`HUMAN: ${hScore}, MACHINE: ${cScore}`);
+                        break;
+                    case 2:
+                        console.log("YOU WIN");
+                        hScore++;
+                        console.log(`HUMAN: ${hScore}, MACHINE: ${cScore}`);
+                        break;
+                }
             }
+            console.log(`GAME OVER. VICTOR: ${hScore > cScore ? 'HUMAN' : 'MACHINE'}.`)
         }
     </script>
 </body>
