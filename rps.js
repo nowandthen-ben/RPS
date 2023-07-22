@@ -2,12 +2,31 @@ const report = document.createElement('div');
 const buttons = document.querySelectorAll('button');
 buttons.forEach(btn => btn.addEventListener('click', runButton));
 const results = document.querySelector('#results');  
+const subscore = document.querySelector('.subscore')
+const hScoreboard = document.querySelector('#hScoreboard');
+const cScoreboard = document.querySelector('#cScoreboard');
 
-let compChoice;
-let humanChoice;
+let hScore = 0;
+let cScore = 0;
 
 function computerSelect() {
-    compChoice = Math.floor(Math.random() * 3);
+    return Math.floor(Math.random() * 3);
+}
+
+function translate(x) {
+    let num = x;
+    let translation;
+    switch (num) {
+        case 0:
+            return "ROCK";
+            break;
+        case 1:
+            return "PAPER";
+            break;
+        case 2:
+            return "SCISSORS";
+            break;
+    }
 }
 
 function rpsEval(human, computer) {
@@ -25,30 +44,37 @@ function rpsEval(human, computer) {
 }
 
 function runButton(e) {
-    computerSelect();
+    compChoice = computerSelect();
     humanChoice = parseInt(e.target.getAttribute('data-value'));
-    report.textContent = `YOU CHOSE: ${(e.target.id).toUpperCase()}! COMPUTER CHOSE: ${translate(compChoice)}!`;
-    report.appendChild(document.createElement('br'));
-    report.appendChild(document.createTextNode(`${rpsEval(humanChoice, compChoice)}`));
-    report.style.textAlign = 'center';
-    results.appendChild(report);
-};
 
-function translate(x) {
-    let num = x;
-    let translation;
-    switch (num) {
+    let message;
+    switch ((2 * humanChoice + compChoice) % 3) {
         case 0:
-            return "ROCK";
+            message =  "TIE GAME!";
             break;
         case 1:
-            return "PAPER";
+            message = "YOU LOSE!";
+            cScore++;
             break;
         case 2:
-            return "SCISSORS";
+            message = "YOU WIN!";
+            hScore++;
             break;
     }
-}
+
+    report.textContent = `You chose: ${(e.target.id).toUpperCase()}`;
+    report.appendChild(document.createElement('br'));
+    report.appendChild(document.createTextNode(`Computer chose: ${translate(compChoice)}`));
+    report.appendChild(document.createElement('br'));
+    report.appendChild(document.createElement('br'));
+    report.appendChild(document.createTextNode(`${message}`));
+    report.style.textAlign = 'center';
+    results.appendChild(report);
+
+    hScoreboard.textContent = `Human: ${hScore}`;
+    cScoreboard.textContent = `Computer: ${cScore}`;
+};
+
 function rps(x = 5) {
     let hScore = 0;
     let cScore = 0;
