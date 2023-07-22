@@ -1,0 +1,30 @@
+p {
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.subscore {
+    display: flex;
+    justify-content: center;
+}
+
+.subscore div {
+    padding: 10px;
+}
+
+#weapon {
+    text-align: center;
+    margin: 10px;
+}

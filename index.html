@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THE GREAT GAME OF WITS</title>
+    <link rel="stylesheet" href="./style.css">
     <script src="./rps.js" defer></script>
 </head>
 <body>
-    <div>
-        <p>The great contest of our time is that of man versus machine, creator against his creation.</p>
-        <p>You too must try yourself in the fires of this conflict. Do you have what it takes to overcome?</p>
+    <div class="flavor">
+        <p>The great contest of our time is that of man versus machine, creator against his creation.<br>
+        You must try yourself in the fires of this conflict. Do you have what it takes to overcome?</p>
     </div>
-    <div>CHOOSE YOUR WEAPON:</div>
-    <button>ROCK</button>
-    <button>PAPER</button>
-    <button>SCISSORS</button>
+    <div id="weapon">CHOOSE YOUR WEAPON:</div>
+    <div class="buttons">
+        <button id="rock">ROCK</button>
+        <button id="paper">PAPER</button>
+        <button id="scissors">SCISSORS</button>
+    </div>
     <div class="score">SCORE:
-        <div>HUMAN:</div>
-        <div>MACHINE:</div>
+        <div class="subscore">
+            <div>HUMAN:</div>
+            <div>MACHINE:</div>
+        </div>
     </div>
 </body>
 </html>
