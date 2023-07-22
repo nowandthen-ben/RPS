@@ -1,50 +1,39 @@
 const report = document.createElement('div');
 const buttons = document.querySelectorAll('button');
-buttons.forEach(btn => btn.addEventListener('click', alertme));
-
+buttons.forEach(btn => btn.addEventListener('click', runButton));
 const results = document.querySelector('#results');  
 
+let compChoice;
+let humanChoice;
 
+function computerSelect() {
+    compChoice = Math.floor(Math.random() * 3);
+}
 
-function alertme(x) {
+function rpsEval(human, computer) {
+    switch ((2 * human + computer) % 3) {
+        case 0:
+            return "TIE GAME!";
+            break;
+        case 1:
+            return "YOU LOSE!";
+            break;
+        case 2:
+            return "YOU WIN!";
+            break;
+    }
+}
+
+function runButton(e) {
     computerSelect();
-    report.textContent = `YOU CHOSE: ${(x.target.id).toUpperCase()}! COMPUTER CHOSE: ${translate(compChoice)}!`;
+    humanChoice = parseInt(e.target.getAttribute('data-value'));
+    report.textContent = `YOU CHOSE: ${(e.target.id).toUpperCase()}! COMPUTER CHOSE: ${translate(compChoice)}!`;
     report.appendChild(document.createElement('br'));
-    report.appendChild(document.createTextNode('VICTOR:'));
+    report.appendChild(document.createTextNode(`${rpsEval(humanChoice, compChoice)}`));
     report.style.textAlign = 'center';
     results.appendChild(report);
 };
 
-let compChoice;
-let humanChoice;
-function computerSelect() {
-    compChoice = Math.floor(Math.random() * 3);
-}
-function humanSelect() {
-    while (true) {
-        tool = prompt("Arm yourself!").toLowerCase();
-        switch (tool) {
-            case "rock":
-                humanChoice = 0;
-                break;
-            case "paper":
-                humanChoice = 1;
-                break;
-            case "scissors":
-                humanChoice = 2;
-                break;
-            default:
-                humanChoice = -1;
-                break;
-        }
-        if (humanChoice < 0) {
-            alert("INVALID INPUT, TRY AGAIN");
-        }
-        else {
-            break;
-        }
-    }
-}
 function translate(x) {
     let num = x;
     let translation;
@@ -85,3 +74,4 @@ function rps(x = 5) {
     }
     console.log(`GAME OVER. VICTOR: ${hScore > cScore ? 'HUMAN' : 'MACHINE'}.`)
 }
+
