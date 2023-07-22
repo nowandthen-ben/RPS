@@ -1,3 +1,20 @@
+const report = document.createElement('div');
+const buttons = document.querySelectorAll('button');
+buttons.forEach(btn => btn.addEventListener('click', alertme));
+
+const results = document.querySelector('#results');  
+
+
+
+function alertme(x) {
+    computerSelect();
+    report.textContent = `YOU CHOSE: ${(x.target.id).toUpperCase()}! COMPUTER CHOSE: ${translate(compChoice)}!`;
+    report.appendChild(document.createElement('br'));
+    report.appendChild(document.createTextNode('VICTOR:'));
+    report.style.textAlign = 'center';
+    results.appendChild(report);
+};
+
 let compChoice;
 let humanChoice;
 function computerSelect() {
@@ -33,13 +50,13 @@ function translate(x) {
     let translation;
     switch (num) {
         case 0:
-            return "rock";
+            return "ROCK";
             break;
         case 1:
-            return "paper";
+            return "PAPER";
             break;
         case 2:
-            return "scissors";
+            return "SCISSORS";
             break;
     }
 }

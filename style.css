@@ -2,10 +2,24 @@ p {
     text-align: center;
 }
 
+#weapon {
+    text-align: center;
+    margin: 10px;
+}
+
 .buttons {
     display: flex;
     justify-content: center;
     gap: 20px;
+}
+
+#results {
+    display: flex;
+    justify-content: center;
+}
+
+#results div {
+    padding: 10px;
 }
 
 .score {
@@ -22,9 +36,4 @@ p {
 
 .subscore div {
     padding: 10px;
-}
-
-#weapon {
-    text-align: center;
-    margin: 10px;
 }
