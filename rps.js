@@ -1,5 +1,5 @@
 const report = document.createElement('div');
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.tools button');
 buttons.forEach(btn => btn.addEventListener('click', runButton));
 const results = document.querySelector('#results');  
 const subscore = document.querySelector('.subscore')
@@ -25,20 +25,6 @@ function translate(x) {
             break;
         case 2:
             return "SCISSORS";
-            break;
-    }
-}
-
-function rpsEval(human, computer) {
-    switch ((2 * human + computer) % 3) {
-        case 0:
-            return "TIE GAME!";
-            break;
-        case 1:
-            return "YOU LOSE!";
-            break;
-        case 2:
-            return "YOU WIN!";
             break;
     }
 }
@@ -73,7 +59,32 @@ function runButton(e) {
 
     hScoreboard.textContent = `Human: ${hScore}`;
     cScoreboard.textContent = `Computer: ${cScore}`;
+    if (cScore + hScore == 5) {gameOver()};
 };
+
+const score = document.querySelector('#score');
+const victor = document.createElement('div');
+
+function gameOver() {
+    buttons.forEach(btn => btn.disabled = true);
+    victor.textContent = `GAME OVER. VICTOR: ${hScore > cScore ? 'HUMAN' : 'MACHINE'}.`;
+    score.appendChild(victor);
+}
+
+const reset = document.querySelector('#reset');
+
+reset.addEventListener('click', newGame);
+
+function newGame() {
+    buttons.forEach(btn => btn.disabled = false);
+    cScore = hScore = 0;
+    hScoreboard.textContent = `Human: ${hScore}`;
+    cScoreboard.textContent = `Computer: ${cScore}`;
+    report.textContent = "";
+    score.removeChild(victor);
+}
+
+
 
 function rps(x = 5) {
     let hScore = 0;
