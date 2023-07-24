@@ -1,3 +1,10 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
 p {
     text-align: center;
 }
@@ -5,7 +12,6 @@ p {
 div {
     display: flex;
     justify-content: center;
-    margin: 10px;
 }
 
 #weapon {
@@ -13,7 +19,7 @@ div {
     margin: 10px;
 }
 
-.tools {
+.dashboard {
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -22,13 +28,13 @@ div {
 #results {
     display: flex;
     justify-content: center;
+    margin: 10px;
 }
 
 #score {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 15px 15px 0px 15px;
 }
 
 .subscore {
@@ -43,4 +49,15 @@ div {
 
 .newgame {
     margin: 0px;
+}
+
+@keyframes boom {
+    0%  {background-color: white;}
+    25% {background-color: palegoldenrod;}
+    100%{background-color: #CC0000;}
+    0%  {height: 1vmax; width: 1vmax;}
+    0%  {transform: scale(1);}
+    100%{transform: scale(200);}
+    0%  {border-radius: 50%;}
+    100%  {border-radius: 50%;}
 }
